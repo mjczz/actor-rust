@@ -53,7 +53,7 @@ impl Handler<Subscribe> for OrderEvents {
 impl Handler<Ship> for OrderEvents {
     type Result = ();
 
-    fn handle(&mut self, msg: Ship, ctx: &mut Self::Context) {
+    fn handle(&mut self, msg: Ship, _ctx: &mut Self::Context) {
         self.notify(msg.0);
         System::current().stop();
     }
