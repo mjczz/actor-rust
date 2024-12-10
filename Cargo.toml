@@ -2,10 +2,33 @@
 name = "actor-rust"
 version = "0.1.0"
 edition = "2021"
+default-run = "actor-rust" # Set the target for the default run.
+
+[[bin]]
+name = "actor-rust"
+path = "src/main.rs"
+
+[[bin]]
+name = "arbiter"
+path = "src/bin/arbiter.rs"
+
+[[bin]]
+name = "sync_actor1"
+path = "src/bin/sync_actor1.rs"
+
+[[bin]]
+name = "sync_actor2"
+path = "src/bin/sync_actor2.rs"
+
+[[bin]]
+name = "sync_actor3"
+path = "src/bin/sync_actor3.rs"
 
 [dependencies]
 actix-web = "4"
 actix = "0.13"
+tokio = { version = "1.42.0", features = ["full"] }
+futures = "0.3"
 
 
 
