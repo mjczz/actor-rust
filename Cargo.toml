@@ -52,7 +52,7 @@ futures = "0.3"
 actix-ws = "0.3"
 futures-util = { version = "0.3.17", default-features = false, features = ["std"] }
 metrics = { version = "0.23.0" }
-getopts = {version = "0.2.21"}
+getopts = { version = "0.2.21" }
 crossbeam-queue = "0.3.11"
 tracing = "0.1.40"
 tracing-subscriber = "0.3.18"
