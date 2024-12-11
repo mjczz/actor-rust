@@ -9,7 +9,7 @@ use std::time::Duration;
 use crossbeam_queue::SegQueue;
 use getopts::Options;
 use rand::{thread_rng, Rng};
-use tracing::{error, info};
+use tracing::{debug, error, info, warn};
 
 const COUNTER_LOOP: usize = 1024;
 
@@ -116,7 +116,7 @@ fn run_producer(
             counter_local = 0;
 
             if done.load(Ordering::Relaxed) {
-                println!("producer recived done state...");
+                warn!("producer recived done state...");
                 break;
             }
         }
@@ -142,8 +142,9 @@ fn run_consumer(done: Arc<AtomicBool>, queue: Arc<SegQueue<usize>>) -> (usize, u
         // Every COUNTER_LOOP iterations, do housekeeping.
         if watch_counter == COUNTER_LOOP {
             watch_counter = 0;
-
+            info!("run consumer: {:} times", COUNTER_LOOP);
             if done.load(Ordering::Relaxed) && queue.is_empty() {
+                warn!("consumer recived done state...");
                 break;
             }
         }
@@ -151,7 +152,6 @@ fn run_consumer(done: Arc<AtomicBool>, queue: Arc<SegQueue<usize>>) -> (usize, u
         watch_counter += 1;
         match queue.pop() {
             Some(value) => {
-                println!("run consumer: {:}", total);
                 total += value;
             },
             None => continue,
