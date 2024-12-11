@@ -28,6 +28,18 @@ path = "src/bin/sync_actor3.rs"
 name = "ws"
 path = "src/bin/ws.rs"
 
+[[bin]]
+name = "m1"
+path = "src/bin/metrics_count.rs"
+
+[[bin]]
+name = "m2"
+path = "src/bin/metrics_gauge.rs"
+
+[[bin]]
+name = "m3"
+path = "src/bin/metrics_histogram.rs"
+
 [dependencies]
 actix-web = "4"
 actix = "0.13"
@@ -35,6 +47,7 @@ tokio = { version = "1.42.0", features = ["full"] }
 futures = "0.3"
 actix-ws = "0.3"
 futures-util = { version = "0.3.17", default-features = false, features = ["std"] }
+metrics = {version = "0.23.0"}
 
 
 
